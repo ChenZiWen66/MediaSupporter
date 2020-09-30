@@ -1,5 +1,4 @@
 package com.czw.mediasupportmodule;
-
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,5 +13,4 @@ public class MediaSupportModuleApplication {
         SpringApplication.run(MediaSupportModuleApplication.class, args);
         LOG.info("创建完成: http://localhost:9001");
     }
-
 }

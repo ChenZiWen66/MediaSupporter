@@ -34,4 +34,5 @@ public class VideoService {
         LOG.info("查询视频信息成功");
         return showVideoInfoResponseList;
     }
+
 }
