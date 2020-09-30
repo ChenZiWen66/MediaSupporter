@@ -32,6 +32,7 @@ public class VideoController {
     String accessKeySecret = "Xns4PoPT0XSbaACmOYx523RtQd3ZwK";
 
     @RequestMapping("/showInfo")
+    @CrossOrigin
     public List<ShowVideoInfoResponse> showVideoInfoList() {
         return videoService.showVideoInfo();
     }
@@ -43,6 +44,7 @@ public class VideoController {
      * @return
      */
     @PostMapping("/uploadfile")
+    @CrossOrigin
     public String uploadFile2OSS(@RequestParam(value = "file") MultipartFile file,
                                  @RequestParam(value = "currentIndex") String currentIndex,
                                  @RequestParam(value = "totalIndex") String totalIndex,
