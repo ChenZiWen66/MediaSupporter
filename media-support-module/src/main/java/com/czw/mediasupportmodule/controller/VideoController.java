@@ -20,7 +20,6 @@ public class VideoController {
     private VideoService videoService;
 
     @RequestMapping("/showInfo")
-    @CrossOrigin
     public List<ShowVideoInfoResponse> showVideoInfoList() {
         return videoService.showVideoInfo();
     }
@@ -34,11 +33,19 @@ public class VideoController {
      * @return
      */
     @PostMapping("/uploadfile")
-    @CrossOrigin
     public UploadFileResponse uploadFile2OSS(@RequestParam(value = "file") MultipartFile file,
                                              @RequestParam(value = "currentIndex") String currentIndex,
                                              @RequestParam(value = "totalIndex") String totalIndex,
                                              @RequestParam(value = "fileName") String filename) throws IOException {
         return videoService.UpLoadFile(file,currentIndex,totalIndex,filename);
+    }
+
+    @PostMapping("/insertVideoInfo")
+    public String InsertVideoInfo(@RequestParam(value = "title") String title,
+                                  @RequestParam(value = "imgUrl") String imgUrl,
+                                  @RequestParam(value = "videoUrl") String videoUrl,
+                                  @RequestParam(value = "describe") String describe){
+
+        return videoService.InsertVideoInfo(title,imgUrl,videoUrl,describe);
     }
 }

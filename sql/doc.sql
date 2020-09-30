@@ -1,5 +1,4 @@
-select *
-from video_info;
+select * from video_info;
 
 insert into video_info(imgSrc, videoDescribe, videoTitle, videoUrl)
     value ('https://czwhub.oss-cn-shanghai.aliyuncs.com/xiaolan.jpg',
@@ -20,3 +19,6 @@ insert into video_info(imgSrc, videoDescribe, videoTitle, videoUrl)
     value ('https://czwhub.oss-cn-shanghai.aliyuncs.com/%E6%AD%A6%E6%B1%89%E5%B0%81%E9%9D%A2.jpg',
            '这是活动视频描述', '活动视频',
            'https://czwhub.oss-cn-shanghai.aliyuncs.com/%E6%B4%BB%E5%8A%A8%E8%A7%86%E9%A2%91.mp4');
+
+delete from video_info where id=6;
+delete from video_info where id=10;

@@ -2,6 +2,7 @@ package com.czw.mediasupportmodule.service;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
+import com.czw.mediasupportmodule.entity.InsertVideoInfoEntity;
 import com.czw.mediasupportmodule.entity.Video_infoEntity;
 import com.czw.mediasupportmodule.mapper.VideoMapper;
 import com.czw.mediasupportmodule.response.ShowVideoInfoResponse;
@@ -30,7 +31,6 @@ public class VideoService {
 
     @Autowired
     private VideoMapper videoMapper;
-
 
     public List<ShowVideoInfoResponse> showVideoInfo(){
         LOG.info("开始查询视频信息");
@@ -73,6 +73,7 @@ public class VideoService {
         }
         return uploadFileResponse;
     }
+
     /**
      * 上传到阿里云OSS
      * @param filename:文件名
@@ -110,7 +111,25 @@ public class VideoService {
         if(file.exists()){
             file.delete();
         }
-        LOG.info("上传文件到成功:{}","http://czwhub."+endpointWithoutHttp+"//"+uuid+filename);
-        return "http://czwhub."+endpointWithoutHttp+"//"+uuid+filename;
+        LOG.info("上传文件到成功:{}","https://czwhub."+endpointWithoutHttp+"//"+uuid+filename);
+        return "https://czwhub."+endpointWithoutHttp+"//"+uuid+filename;
+    }
+
+    public String InsertVideoInfo(String title,String imgUrl,String videoUrl,String describe){
+        LOG.info("Title:{}",title);
+        LOG.info("imgUrl:{}",imgUrl);
+        LOG.info("videoUrl:{}",videoUrl);
+        LOG.info("describe:{}",describe);
+        InsertVideoInfoEntity insertVideoInfoEntity = new InsertVideoInfoEntity();
+        insertVideoInfoEntity.setDescribe(describe);
+        insertVideoInfoEntity.setImgUrl(imgUrl);
+        insertVideoInfoEntity.setTitle(title);
+        insertVideoInfoEntity.setVideoUrl(videoUrl);
+        LOG.info("嗯Title:{}",insertVideoInfoEntity.getTitle());
+        LOG.info("嗯imgUrl:{}",insertVideoInfoEntity.getImgUrl());
+        LOG.info("嗯videoUrl:{}",insertVideoInfoEntity.getVideoUrl());
+        LOG.info("嗯describe:{}",insertVideoInfoEntity.getDescribe());
+        int result=videoMapper.insertVideoInfo(insertVideoInfoEntity);
+        return String.valueOf(result);
     }
 }

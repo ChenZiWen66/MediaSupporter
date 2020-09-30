@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.czw.mediasupportmodule.mapper.VideoMapper">
+    <insert id="insertVideoInfo" parameterType="com.czw.mediasupportmodule.entity.InsertVideoInfoEntity">
+        insert into video_info(imgSrc, videoDescribe, videoTitle, videoUrl)
+            value (#{imgUrl,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+                   #{videoUrl,jdbcType=VARCHAR});
+    </insert>
 
     <select id="showVideoInfo" resultType="com.czw.mediasupportmodule.entity.Video_infoEntity">
         select *
