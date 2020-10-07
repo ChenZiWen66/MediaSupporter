@@ -11,4 +11,9 @@
         select *
         from video_info
     </select>
+    <select id="getVideoInfo" resultType="com.czw.mediasupportmodule.entity.Video_infoEntity">
+        select *
+        from video_info
+        limit #{currentIndex},#{pageSize}
+    </select>
 </mapper>

@@ -48,6 +48,27 @@ public class VideoService {
         return showVideoInfoResponseList;
     }
 
+    /**
+     * 分页查询视频信息
+     * @param currentPage:当前页面数
+     * @param pageSize:页面大小
+     * @return
+     */
+    public List<ShowVideoInfoResponse> getVideoInfo(int currentPage,int pageSize){
+        List<ShowVideoInfoResponse> showVideoInfoResponseList = new ArrayList<>();
+        List<Video_infoEntity> videoInfoEntityList=videoMapper.getVideoInfo((currentPage-1)*pageSize,pageSize);
+        for (Video_infoEntity videoInfoEntity : videoInfoEntityList){
+            ShowVideoInfoResponse showVideoInfoResponse = new ShowVideoInfoResponse();
+            showVideoInfoResponse.setImgSrc(videoInfoEntity.getImgSrc());
+            showVideoInfoResponse.setDescribe(videoInfoEntity.getVideoDescribe());
+            showVideoInfoResponse.setVideoTitle(videoInfoEntity.getVideoTitle());
+            showVideoInfoResponse.setVideoUrl(videoInfoEntity.getVideoUrl());
+            showVideoInfoResponseList.add(showVideoInfoResponse);
+        }
+        LOG.info("查询视频信息成功");
+        return showVideoInfoResponseList;
+    }
+
     public UploadFileResponse UpLoadFile(MultipartFile file, String currentIndex, String totalIndex, String filename) throws IOException {
         LOG.info("开始接收文件["+filename+"]分片");
         String sliceName = file.getOriginalFilename();
@@ -115,6 +136,14 @@ public class VideoService {
         return "https://czwhub."+endpointWithoutHttp+"//"+uuid+filename;
     }
 
+    /**
+     * 将视频信息插入至数据库中
+     * @param title
+     * @param imgUrl
+     * @param videoUrl
+     * @param describe
+     * @return
+     */
     public String InsertVideoInfo(String title,String imgUrl,String videoUrl,String describe){
         LOG.info("Title:{}",title);
         LOG.info("imgUrl:{}",imgUrl);
