@@ -16,4 +16,8 @@
         from video_info
         limit #{currentIndex},#{pageSize}
     </select>
+    <select id="getInfoCount" resultType="java.lang.Integer">
+        select count(*)
+        from video_info
+    </select>
 </mapper>

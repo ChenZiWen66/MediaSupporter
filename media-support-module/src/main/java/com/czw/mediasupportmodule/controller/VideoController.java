@@ -2,6 +2,7 @@ package com.czw.mediasupportmodule.controller;
 
 import com.czw.mediasupportmodule.response.ShowVideoInfoResponse;
 import com.czw.mediasupportmodule.response.UploadFileResponse;
+import com.czw.mediasupportmodule.response.VideoInfoCountResponse;
 import com.czw.mediasupportmodule.service.VideoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,11 @@ public class VideoController {
     @RequestMapping("/showInfo")
     public List<ShowVideoInfoResponse> showVideoInfoList() {
         return videoService.showVideoInfo();
+    }
+
+    @RequestMapping("/getCount")
+    public VideoInfoCountResponse getInfoCount(){
+        return videoService.getCount();
     }
 
     /**

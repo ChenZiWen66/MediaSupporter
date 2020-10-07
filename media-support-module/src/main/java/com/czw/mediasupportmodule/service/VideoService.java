@@ -7,6 +7,7 @@ import com.czw.mediasupportmodule.entity.Video_infoEntity;
 import com.czw.mediasupportmodule.mapper.VideoMapper;
 import com.czw.mediasupportmodule.response.ShowVideoInfoResponse;
 import com.czw.mediasupportmodule.response.UploadFileResponse;
+import com.czw.mediasupportmodule.response.VideoInfoCountResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -160,5 +161,15 @@ public class VideoService {
         LOG.info("嗯describe:{}",insertVideoInfoEntity.getDescribe());
         int result=videoMapper.insertVideoInfo(insertVideoInfoEntity);
         return String.valueOf(result);
+    }
+
+    /**
+     * 查询视频信息数量
+     * @return
+     */
+    public VideoInfoCountResponse getCount() {
+        VideoInfoCountResponse videoInfoCountResponse = new VideoInfoCountResponse();
+        videoInfoCountResponse.setCount(videoMapper.getInfoCount());
+        return videoInfoCountResponse;
     }
 }
