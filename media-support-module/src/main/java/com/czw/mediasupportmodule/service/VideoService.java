@@ -27,8 +27,8 @@ public class VideoService {
     private Map<String,Map<String,String>> file_slicePath_dictionary= new TreeMap<>();
     String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
     String endpointWithoutHttp = "oss-cn-shanghai.aliyuncs.com";
-    String accessKeyId = "LTAI4GKeGZb44FVAQCD7y1hb";
-    String accessKeySecret = "Xns4PoPT0XSbaACmOYx523RtQd3ZwK";
+    String accessKeyId = "阿里云ID";
+    String accessKeySecret = "阿里云密码";
 
     @Autowired
     private VideoMapper videoMapper;
